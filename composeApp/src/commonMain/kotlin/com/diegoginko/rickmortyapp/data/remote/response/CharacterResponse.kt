@@ -1,5 +1,6 @@
 package com.diegoginko.rickmortyapp.data.remote.response
 
+import com.diegoginko.rickmortyapp.domain.model.CharacterModel
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -16,4 +17,17 @@ data class CharacterResponse(
     val url : String,
     @SerialName("created")
     val created : String
-)
+) {
+    fun toDomain(): CharacterModel {
+        return CharacterModel(
+            id = id,
+            name = name,
+            isAlive = status.lowercase() == "alive",
+            species = species,
+            type = type,
+            gender = gender,
+            image = image,
+            episode = episode
+        )
+    }
+}

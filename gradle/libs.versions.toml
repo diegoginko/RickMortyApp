@@ -19,6 +19,7 @@ koinComposeViewModel = "4.1.0"
 ktor = "3.2.3"
 viewmodel = "2.9.1"
 coil = "3.3.0"
+pagingComposeCommon = "3.3.0-alpha02-0.5.1"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -53,6 +54,9 @@ viewmodel-compose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewm
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
 coil-network-ktor = { module = "io.coil-kt.coil3:coil-ktor", version.ref = "coil" }
 
+#Paginacion
+paging-common = { module = "app.cash.paging:paging-common", version.ref = "pagingComposeCommon" }
+paging-compose-common = { module = "app.cash.paging:paging-compose-common", version.ref = "pagingComposeCommon" }
 
 
 [plugins]

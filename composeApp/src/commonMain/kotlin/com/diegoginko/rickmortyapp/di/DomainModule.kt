@@ -12,3 +12,4 @@ val domainModule = module {
 //    factoryOf(::GetName)
     factoryOf(::GetRandomCharacter)
 }
+

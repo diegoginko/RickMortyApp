@@ -2,8 +2,12 @@ package com.diegoginko.rickmortyapp.ui.home.tabs.characters
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import org.koin.compose.viewmodel.koinViewModel
@@ -11,5 +15,15 @@ import org.koin.compose.viewmodel.koinViewModel
 @Composable
 fun CharactersScreen(){
     val charactersViewModel = koinViewModel<CharactersViewModel>()
-    Box(Modifier.fillMaxSize().background(Color.Red))
+    val state by charactersViewModel.state.collectAsState()
+
+    Column(Modifier.fillMaxSize()) {
+//        if(state.value.characterOfTheDay != null){
+//            Text(state.value.characterOfTheDay.name)
+//        }
+        //De esta forma utiliza el estado que vio al checkear que no fuera nulo, ya que si esta dentro de un if, puede cambiar luego de comprobarlo
+        state.characterOfTheDay?.let {
+            Text(it.name)
+        }
+    }
 }

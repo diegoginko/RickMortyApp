@@ -1,5 +1,8 @@
 package com.diegoginko.rickmortyapp.data.remote.response
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class InfoResponse(
     val count: Int,
     val pages: Int,

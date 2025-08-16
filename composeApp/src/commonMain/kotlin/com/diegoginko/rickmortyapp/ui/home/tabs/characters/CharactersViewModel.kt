@@ -25,14 +25,17 @@ class CharactersViewModel(val getRandomCharacter: GetRandomCharacter, private va
                 getRandomCharacter()
 
             }
-            _state.update { it.copy(characterOfTheDay = result) }
+            _state.update { state -> state.copy(characterOfTheDay = result) }
 
         }
         getAllCharacters()
     }
 
     private fun getAllCharacters() {
-        val result = repository.getAllCharacters()
-        _state.update { it.copy(characters = result) }
+        _state.update { state ->
+            state.copy(
+                characters = repository.getAllCharacters()
+            )
+        }
     }
 }

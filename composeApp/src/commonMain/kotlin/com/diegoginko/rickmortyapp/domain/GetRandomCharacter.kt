@@ -19,6 +19,7 @@ class GetRandomCharacter(val repository: Repository) {
 //        }else{
 //
 //        }
+        repository.getCharacterDB()
 
         val random: Int = (1..826).random()
         return repository.getSingleCharacter(random.toString())

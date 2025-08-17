@@ -2,10 +2,12 @@ package com.diegoginko.rickmortyapp.data
 
 import app.cash.paging.PagingData
 import com.diegoginko.rickmortyapp.data.database.RickMortyDatabase
+import com.diegoginko.rickmortyapp.data.database.entity.CharacterOfTheDayEntity
 import com.diegoginko.rickmortyapp.data.remote.ApiService
 import com.diegoginko.rickmortyapp.data.remote.paging.CharactersPagingSource
 import com.diegoginko.rickmortyapp.domain.Repository
 import com.diegoginko.rickmortyapp.domain.model.CharacterModel
+import com.diegoginko.rickmortyapp.domain.model.CharacterOfTheDayModel
 import kotlinx.coroutines.flow.Flow
 
 class RepositoryImpl(private val api: ApiService, private val CharacterPagingSource: CharactersPagingSource, private val rickMortyDatabase: RickMortyDatabase): Repository {
@@ -25,7 +27,12 @@ class RepositoryImpl(private val api: ApiService, private val CharacterPagingSou
         ).flow
     }
 
-    override suspend fun getCharacterDB(): Flow<CharacterModel> {
-        rickMortyDatabase.getPreferecesDao().getCharacterOfTheDayDB()
+    override suspend fun getCharacterDB(): CharacterOfTheDayModel? {
+        return rickMortyDatabase.getPreferecesDao().getCharacterOfTheDayDB()?.toDomain()
+    }
+
+    override suspend fun saveCharacterDB(characterOfTheDayModel: CharacterOfTheDayModel) {
+        rickMortyDatabase.getPreferecesDao().saveCharacter(characterOfTheDayModel.toEntity())
     }
 }
+

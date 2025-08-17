@@ -102,9 +102,9 @@ fun CharactersGridList(characters: LazyPagingItems<CharacterModel>, state: Chara
                 }
 
 
-                if(characters.loadState.refresh is LoadState.Loading){
+                if(characters.loadState.append is LoadState.Loading){
                     item(span = { GridItemSpan(2) }){
-                        Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
+                        Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxHeight().height(100.dp)) {
                             CircularProgressIndicator(Modifier.size(64.dp), color = Color.Red)
                         }
                     }
@@ -147,8 +147,8 @@ fun CharacterItemList(x0: CharacterModel) {
 fun CharacterOfTheDay(characterModel: CharacterModel? = null){
     Card(modifier = Modifier.fillMaxWidth().height(400.dp), shape = RoundedCornerShape(12) ) {
         if(characterModel == null){
-            Box(contentAlignment = Alignment.Center){
-                CircularProgressIndicator()
+            Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()){
+                CircularProgressIndicator(color = Color.Green)
             }
         }else{
             Box(contentAlignment = Alignment.BottomStart){

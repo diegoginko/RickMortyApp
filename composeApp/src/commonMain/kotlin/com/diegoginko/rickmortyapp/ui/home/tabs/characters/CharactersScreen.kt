@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
@@ -69,11 +70,16 @@ fun CharactersGridList(characters: LazyPagingItems<CharacterModel>, state: Chara
         modifier = Modifier.fillMaxSize().padding(horizontal = 16.dp),
         columns = GridCells.Fixed(2),
         verticalArrangement = Arrangement.spacedBy(16.dp),
-        horizontalArrangement = Arrangement.spacedBy(16.dp)
+        horizontalArrangement = Arrangement.spacedBy(16.dp),
+        state = rememberLazyGridState()
     ){
 
         item(span = { GridItemSpan(2) }){
-            CharacterOfTheDay(state.characterOfTheDay)
+            Column{
+                Text("Characters", color = Color.Black, fontSize = 24.sp)
+                CharacterOfTheDay(state.characterOfTheDay)
+            }
+
         }
 
         when{
